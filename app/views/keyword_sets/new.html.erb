@@ -1,0 +1,34 @@
+<h1>New Keywords</h1>
+
+<% if @keyword_set.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@keyword_set.errors.count, "error") %> prohibited this keyword set from being saved:</h2>
+
+    <ul>
+    <% @keyword_set.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @keyword_set, html: { class: 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Keywords</label>
+    <div class="col-sm-10">
+      <%= text_area_tag 'keywords', '', rows: 10, class: 'form-control' %>
+      ※改行で区切ってください
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </div>
+<% end %>

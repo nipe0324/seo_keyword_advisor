@@ -1,0 +1,18 @@
+<h1>Keyword Sets</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Analysed At</th>
+  </tr>
+  <% @keyword_sets.each do |set| %>
+    <tr>
+      <th><%= set.id %></th>
+      <th><%= link_to set.name, keyword_set_keywords_path(set) %></th>
+      <th><%= set.analysed_at %></th>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'new', new_keyword_set_path, class: 'btn btn-primary' %>

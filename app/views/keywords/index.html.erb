@@ -1,0 +1,23 @@
+<h1>Keywords Set: <%= @keyword_set.name %></h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">概要</div>
+  <div class="panel-body">
+    ほげほげ
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">詳細</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      <% @keyword_set.keywords.each do |k| %>
+      <li><%= k.name %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= link_to '戻る', keyword_sets_path, class: 'btn btn-default' %>
