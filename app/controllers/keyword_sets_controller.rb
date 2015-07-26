@@ -16,7 +16,8 @@ class KeywordSetsController < ApplicationController
     end
 
     if @keyword_set.save
-      redirect_to keyword_sets_url, notice: '入力したキーワードで分析を開始しました。しばらく'
+      ScrapeSearchResultsJob.perform_later(@keyword_set)
+      redirect_to keyword_sets_url, notice: '入力したキーワードで分析を開始しました。少々お待ち下さい。'
     else
       render :new
     end

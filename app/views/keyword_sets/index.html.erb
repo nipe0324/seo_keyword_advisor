@@ -4,12 +4,14 @@
   <tr>
     <th>#</th>
     <th>Name</th>
+    <th>Status</th>
     <th>Analysed At</th>
   </tr>
   <% @keyword_sets.each do |set| %>
     <tr>
       <th><%= set.id %></th>
       <th><%= link_to set.name, keyword_set_keywords_path(set) %></th>
+      <th><%= set.status %></th>
       <th><%= set.analysed_at %></th>
     </tr>
   <% end %>
