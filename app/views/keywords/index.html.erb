@@ -1,4 +1,12 @@
-<h1>Keywords Set: <%= @keyword_set.name %></h1>
+<div class="row">
+  <div class="col-xs-12 col-sm-9 col-md-9">
+    <h1>Keywords Set: <%= @keyword_set.name %></h1>
+  </div>
+  <div class="col-xs-6 col-sm-3 col-md-3">
+    <%= link_to '戻る', keyword_sets_path, class: 'btn btn-default' %>
+    <%= link_to '再分析', @keyword_set, class: 'btn btn-primary', method: :patch %>
+  </div>
+</div>
 
 <% if @keyword_set.working? %>
   <p>現在、集計中のため少々お待ち下さい。</p>
@@ -29,5 +37,3 @@
     </div>
   </div>
 <% end %>
-
-<%= link_to '戻る', keyword_sets_path, class: 'btn btn-default' %>

@@ -6,6 +6,10 @@ class KeywordSet < ActiveRecord::Base
   validates :keywords, presence: true
   validates :name, presence: true
 
+  def working!
+    update!(analysed_at: nil, status: self.class.statuses[:working])
+  end
+
   def success!
     update!(analysed_at: Time.zone.now, status: self.class.statuses[:success])
   end

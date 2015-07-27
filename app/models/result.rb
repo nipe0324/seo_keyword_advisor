@@ -15,4 +15,8 @@ class Result < ActiveRecord::Base
 
     domain_count_hash
   end
+
+  def self.clear
+    results.destroy_all
+  end
 end

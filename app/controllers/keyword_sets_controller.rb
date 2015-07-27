@@ -8,11 +8,9 @@ class KeywordSetsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      @keyword_set = KeywordSet.new keyword_set_params
-      keywords.each do |k|
-        @keyword_set.keywords.build(name: k)
-      end
+    @keyword_set = KeywordSet.new(keyword_set_params)
+    keywords.each do |keyword|
+      @keyword_set.keywords.build(name: keyword)
     end
 
     if @keyword_set.save
@@ -21,6 +19,13 @@ class KeywordSetsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    @keyword_set = KeywordSet.find(params[:id])
+    ScrapeSearchResultsJob.perform_later(@keyword_set)
+    @keyword_set.working!
+    redirect_to keyword_sets_url, notice: '再度分析を開始しました。少々お待ち下さい。'
   end
 
   private
