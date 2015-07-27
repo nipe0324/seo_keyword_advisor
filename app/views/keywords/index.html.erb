@@ -4,10 +4,10 @@
   <p>現在、集計中のため少々お待ち下さい。</p>
 <% else %>
   <div class="panel panel-default">
-    <div class="panel-heading">概要</div>
+    <div class="panel-heading">集計結果</div>
     <div class="panel-body">
       <%# TODO: show summary %>
-      ほげほげ
+      <%= @summary %>
     </div>
   </div>
 
@@ -18,12 +18,12 @@
     <div class="panel-body">
       <ul>
         <% @keyword_set.keywords.each do |k| %>
-        <li>
-          <%= k.name %>
-          <%# TODO: styling %>
-          <br>
-          <%= debug k.results %>
-        </li>
+        <li><%= k.name %></li>
+        <ul>
+          <% k.results.each_with_index do |r, i| %>
+            <li><%= i+1 %>:<%= link_to r.title, r.url %></li>
+          <% end %>
+        </ul>
         <% end %>
       </ul>
     </div>

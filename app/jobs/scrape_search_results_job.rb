@@ -1,7 +1,7 @@
 class ScrapeSearchResultsJob < ActiveJob::Base
   queue_as :default
 
-  rescue_from StandardError do |exception|
+  rescue_from Exception do |exception|
     keyword_set.fail!
     Rails.logger.error exception.backtrace
   end

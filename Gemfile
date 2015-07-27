@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # background job
 gem 'resque'
 gem 'resque-scheduler'
+gem 'resque-web', require: 'resque_web'
 
 # scrape html
 gem 'nokogiri'
