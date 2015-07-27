@@ -117,6 +117,8 @@ GEM
     pry-byebug (3.1.0)
       byebug (~> 4.0)
       pry (~> 0.10)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -220,8 +222,10 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   guard-livereload
   jquery-rails
+  nokogiri
   pg
   pry-byebug
+  pry-rails
   rails (= 4.2.3)
   resque
   resque-scheduler

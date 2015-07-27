@@ -6,11 +6,11 @@ class KeywordSet < ActiveRecord::Base
   validates :keywords, presence: true
   validates :name, presence: true
 
-  def success
-    update(analysed_at: Time.zone.now, status: self.class.statuses[:success])
+  def success!
+    update!(analysed_at: Time.zone.now, status: self.class.statuses[:success])
   end
 
-  def fail
-    update(analysed_at: Time.zone.now, status: self.class.statuses[:failed])
+  def fail!
+    update!(analysed_at: Time.zone.now, status: self.class.statuses[:failed])
   end
 end

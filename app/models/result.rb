@@ -4,5 +4,4 @@ class Result < ActiveRecord::Base
   validates :url, presence: true
   validates :domain, presence: true
   validates :title, presence: true
-  validates :desc, presence: true
 end
