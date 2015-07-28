@@ -61,13 +61,12 @@ class ScrapeSearchResultService
     end
 
     def extract_url(href)
-      Rails.logger.debug URI.parse(href).query
+      Rails.logger.info href
       URI.parse(href).query.split(/&/).map{|p| p.split("=")}.to_h["q"] rescue NO_DETECT
     end
 
     def extract_domain(url)
-      Rails.logger.debug url
-      Rails.logger.debug URI.parse(url)
+      Rails.logger.info url
       URI.parse(url).hostname rescue NO_DETECT
     end
 
