@@ -2,18 +2,16 @@ class ScrapeSearchResultsJob < ActiveJob::Base
   queue_as :default
 
   rescue_from Exception do |exception|
-    keyword_set.fail!
-    Rails.resque_logger.error exception.backtrace
+    @keyword_set.fail!
   end
 
   def perform(keyword_set)
-    Rails.resque_logger.info 'Start ScrapeSearchResultsJob#perform'
+    @keyword_set = keyword_set
     ActiveRecord::Base.transaction do
-      keyword_set.keywords.each do |keyword|
+      @keyword_set.keywords.each do |keyword|
         ScrapeSearchResultService.new(keyword).call
       end
-      keyword_set.success!
-      Rails.resque_logger.info 'Success ScrapeSearchResultsJob#perform'
+      @keyword_set.success!
     end
   end
 end

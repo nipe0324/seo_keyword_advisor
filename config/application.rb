@@ -22,8 +22,5 @@ module SeoKeywordAdvisor
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
-    # resque logger
-    config.resque_logger = Logger.new("log/resque_#{Rails.env}.log", 'daily')
   end
 end
