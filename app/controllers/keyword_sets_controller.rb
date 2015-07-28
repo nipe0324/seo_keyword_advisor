@@ -1,6 +1,6 @@
 class KeywordSetsController < ApplicationController
   def index
-    @keyword_sets = KeywordSet.all
+    @keyword_sets = KeywordSet.order(created_at: :desc)
   end
 
   def new

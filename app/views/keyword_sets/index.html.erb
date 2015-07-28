@@ -1,4 +1,11 @@
-<h1>Keyword Sets</h1>
+<div class="row">
+  <div class="col-xs-12 col-sm-9 col-md-9">
+    <h1>キーワード分析一覧</h1>
+  </div>
+  <div class="col-xs-6 col-sm-3 col-md-3">
+    <%= link_to '追加', new_keyword_set_path, class: 'btn btn-primary' %>
+  </div>
+</div>
 
 <table class="table table-bordered">
   <tr>
@@ -12,9 +19,8 @@
       <th><%= set.id %></th>
       <th><%= link_to set.name, keyword_set_keywords_path(set) %></th>
       <th><%= set.status %></th>
-      <th><%= set.analysed_at %></th>
+      <th><%= set.analysed_at.strftime('%Y/%m/%d %H:%M:%S %A') %></th>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'new', new_keyword_set_path, class: 'btn btn-primary' %>
