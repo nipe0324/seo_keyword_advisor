@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   root 'keyword_sets#index'
 
+  # For heroku free usage, don't use resque
   # Set ENV to RESQUE_WEB_HTTP_BASIC_AUTH_USER and RESQUE_WEB_HTTP_BASIC_AUTH_PASSWORD
   # for HTTP Basic Authentication
-  mount ResqueWeb::Engine => "/resque_web"
+  # mount ResqueWeb::Engine => "/resque_web"
 end
