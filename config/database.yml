@@ -80,6 +80,9 @@ test:
 #
 production:
   <<: *default
-  database: seo_keyword_advisor_production
-  username: seo_keyword_advisor
-  password: <%= ENV['SEO_KEYWORD_ADVISOR_DATABASE_PASSWORD'] %>
+  encoding: utf8
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host:     <%= ENV['DB_HOSTNAME'] %>
+  port:     <%= ENV['DB_PORT'] %>
