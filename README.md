@@ -28,11 +28,11 @@ Recoomend to use `ruby 2.2.1`
 # confirm postgresql is running
 psql -l
                      List of databases
-       Name       |  Owner   | Encoding |   Collate   | 
+       Name       |  Owner   | Encoding |   Collate   |
 ------------------+----------+----------+-------------+-
- postgres         | postgres | UTF8     | ja_JP.UTF-8 | 
- template0        | postgres | UTF8     | ja_JP.UTF-8 | 
- template1        | postgres | UTF8     | ja_JP.UTF-8 | 
+ postgres         | postgres | UTF8     | ja_JP.UTF-8 |
+ template0        | postgres | UTF8     | ja_JP.UTF-8 |
+ template1        | postgres | UTF8     | ja_JP.UTF-8 |
 
 
 # migration
@@ -65,3 +65,25 @@ bundle exec rails s
 * Access pages by browser
 
 http://localhost:3000/
+
+## Production
+
+* set ENV as below
+
+- RAILS_ROOT (required) - Rails root path
+- HTTP_BASIC_NAME (required) - HTTP basic auth name
+- HTTP_BASIC_PASSWORD (required) - HTTP basic auth password
+- WEB_CONCURRENCY (optional. default 3) - unicorn workers
+
+* Start unicorn
+
+```
+# start unicron
+RAILS_ENV=production bundle exec rake unicorn:start
+
+# confirm wheter unicorn run or not
+ps -ef | grep unicorn | grep -v grep
+
+# stop unicorn
+RAILS_ENV=production bundle exec rake unicorn:start
+```
