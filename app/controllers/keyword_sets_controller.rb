@@ -14,8 +14,10 @@ class KeywordSetsController < ApplicationController
     end
 
     if @keyword_set.save
-      ScrapeSearchResultsJob.perform_later(@keyword_set)
-      redirect_to keyword_sets_url, notice: '入力したキーワードで分析を開始しました。少々お待ち下さい。'
+      # For heroku free usage, don't use resque
+      # ScrapeSearchResultsJob.perform_later(@keyword_set)
+      @keyword_set.scrape
+      redirect_to keyword_sets_url, notice: '入力したキーワードで分析をしました。'
     else
       render :new
     end
@@ -23,9 +25,11 @@ class KeywordSetsController < ApplicationController
 
   def update
     @keyword_set = KeywordSet.find(params[:id])
-    ScrapeSearchResultsJob.perform_later(@keyword_set)
-    @keyword_set.working!
-    redirect_to keyword_sets_url, notice: '再度分析を開始しました。少々お待ち下さい。'
+    # For heroku free usage, don't use resque
+    # ScrapeSearchResultsJob.perform_later(@keyword_set)
+    # @keyword_set.working!
+    @keyword_set.scrape
+    redirect_to keyword_sets_url, notice: '再度分析をしました。'
   end
 
   def destroy

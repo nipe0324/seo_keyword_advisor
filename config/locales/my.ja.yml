@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      keyword_set:
+        name: 名前
+        keywords: キーワード

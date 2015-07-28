@@ -40,6 +40,40 @@ bundle exec rake db:create
 bundle exec rake db:migrate
 ```
 
+* Remove comment out and comment out
+
+```
+class KeywordSetsController < ApplicationController
+
+  def create
+    ...
+
+    if @keyword_set.save
+      ### remove comment out here if use resque. ###
+      # For heroku free usage, don't use resque
+      # ScrapeSearchResultsJob.perform_later(@keyword_set)
+      ### And comment out @keyword_set.scrape.   ###
+      @keyword_set.scrape
+      redirect_to keyword_sets_url, notice: '入力したキーワードで分析を開始しました。少々お待ち下さい。'
+    else
+      render :new
+    end
+
+    def update
+      @keyword_set = KeywordSet.find(params[:id])
+      ### remove comment out here if use resque. ###
+      # For heroku free usage, don't use resque
+      # ScrapeSearchResultsJob.perform_later(@keyword_set)
+      # @keyword_set.working!
+      ### And comment out @keyword_set.scrape.   ###
+      @keyword_set.scrape
+      redirect_to keyword_sets_url, notice: '再度分析を開始しました。少々お待ち下さい。'
+    end
+  end
+  ...
+end
+```
+
 * Run Redis
 
 ```
@@ -73,6 +107,7 @@ http://localhost:3000/
 - RAILS_ROOT (required) - Rails root path
 - HTTP_BASIC_NAME (required) - HTTP basic auth name
 - HTTP_BASIC_PASSWORD (required) - HTTP basic auth password
+- SECRET_KEY_BASE (required) - secret key (such as `rake secret`)
 - WEB_CONCURRENCY (optional. default 3) - unicorn workers
 
 * Start unicorn
@@ -87,3 +122,9 @@ ps -ef | grep unicorn | grep -v grep
 # stop unicorn
 RAILS_ENV=production bundle exec rake unicorn:start
 ```
+
+## Heroku
+
+For free usage, don't use resque.
+Foreground scraiping process.
+
