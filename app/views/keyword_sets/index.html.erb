@@ -13,13 +13,15 @@
     <th>Name</th>
     <th>Status</th>
     <th>Analysed At</th>
+    <th></th>
   </tr>
   <% @keyword_sets.each do |set| %>
     <tr>
       <th><%= set.id %></th>
       <th><%= link_to set.name, keyword_set_keywords_path(set) %></th>
       <th><%= set.status %></th>
-      <th><%= set.analysed_at.strftime('%Y/%m/%d %H:%M:%S %A') %></th>
+      <th><%= set.analysed_at.try(:strftime, '%Y/%m/%d %H:%M:%S %A') %></th>
+      <th><%= link_to '削除', keyword_set_path(set), method: :delete %></th>
     </tr>
   <% end %>
 </table>

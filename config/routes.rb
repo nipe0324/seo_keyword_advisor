@@ -2,7 +2,7 @@ require "resque_web"
 
 Rails.application.routes.draw do
 
-  resources :keyword_sets, only: [:index, :new, :create, :update] do
+  resources :keyword_sets, only: [:index, :new, :create, :update, :destroy] do
     resources :keywords, only: :index
   end
 

@@ -28,6 +28,12 @@ class KeywordSetsController < ApplicationController
     redirect_to keyword_sets_url, notice: '再度分析を開始しました。少々お待ち下さい。'
   end
 
+  def destroy
+    @keyword_set = KeywordSet.find(params[:id])
+    @keyword_set.destroy
+    redirect_to keyword_sets_url, notice: '削除しました。'
+  end
+
   private
 
     def keyword_set_params
