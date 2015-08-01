@@ -21,7 +21,7 @@
         <% @keyword_set.keywords.each do |k| %>
         <li><%= k.name %></li>
         <ul>
-          <% k.results.each do |r| %>
+          <% k.results.order(:position).each do |r| %>
             <li><%= r.position %>:<%= link_to r.title, r.url %> (<%= r.domain %>)</li>
           <% end %>
         </ul>
