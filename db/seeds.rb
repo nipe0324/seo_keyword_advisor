@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+ResultWeight.delete_all
+# from https://chitika.com/google-positioning-value
+ResultWeight.create!([
+  { position: 1,  weight: 32.5 },
+  { position: 2,  weight: 17.6 },
+  { position: 3,  weight: 11.4 },
+  { position: 4,  weight: 8.1 },
+  { position: 5,  weight: 6.1 },
+  { position: 6,  weight: 4.4 },
+  { position: 7,  weight: 3.5 },
+  { position: 8,  weight: 3.1 },
+  { position: 9,  weight: 2.6 },
+  { position: 10, weight: 2.4 },
+  { position: ResultWeight::UNKNOWN, weight: 1 }
+])

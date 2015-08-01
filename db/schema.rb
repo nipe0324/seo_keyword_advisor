@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726144026) do
+ActiveRecord::Schema.define(version: 20150801040203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20150726144026) do
   end
 
   add_index "keywords", ["keyword_set_id"], name: "index_keywords_on_keyword_set_id", using: :btree
+
+  create_table "result_weights", force: :cascade do |t|
+    t.integer  "position",   null: false
+    t.float    "weight",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "result_weights", ["position"], name: "index_result_weights_on_position", unique: true, using: :btree
 
   create_table "results", force: :cascade do |t|
     t.integer  "keyword_id"

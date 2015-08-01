@@ -1,16 +1,6 @@
 <h1>新しくキーワードを分析</h1>
 
-<% if @keyword_set.errors.any? %>
-<div class="alert alert-danger" role="alert">
-  <p><%= @keyword_set.errors.count %>件の入力エラーがあります。</p>
-
-  <ul>
-  <% @keyword_set.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
+<%= render 'shared/errors', model: @keyword_set %>
 
 <%= form_for @keyword_set, html: { class: 'form-horizontal'} do |f| %>
   <div class="form-group">

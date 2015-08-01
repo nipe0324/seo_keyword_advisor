@@ -1,0 +1,19 @@
+<h1>重み付け</h1>
+
+<%= form_tag result_weights_path, method: :patch do %>
+<table class="table table-bordered">
+  <tr>
+    <th>検索順位</th>
+    <th>重み付け</th>
+  </tr>
+  <% @weights.each do |w| %>
+    <tr>
+      <th><%= w.position_desc %></th>
+      <th><%= text_field_tag 'weights[][weight]', w.weight, class: 'form-control' %></th>
+      <%= hidden_field_tag 'weights[][position]', w.position%>
+    </tr>
+  <% end %>
+</table>
+
+<%= submit_tag '更新', class: 'btn btn-primary' %>
+<% end %>

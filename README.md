@@ -38,7 +38,47 @@ psql -l
 # migration
 bundle exec rake db:create
 bundle exec rake db:migrate
+
+# seed data
+bundle exec rake db:seed
 ```
+
+* Access pages by browser
+
+http://localhost:3000/
+
+## Production
+
+* set ENV as below
+
+- RAILS_ROOT (required) - Rails root path
+- HTTP_BASIC_NAME (required) - HTTP basic auth name
+- HTTP_BASIC_PASSWORD (required) - HTTP basic auth password
+- SECRET_KEY_BASE (required) - secret key (such as `rake secret`)
+- WEB_CONCURRENCY (optional. default 3) - unicorn workers
+
+* Start unicorn
+
+```
+# start unicron
+RAILS_ENV=production bundle exec rake unicorn:start
+
+# confirm wheter unicorn run or not
+ps -ef | grep unicorn | grep -v grep
+
+# stop unicorn
+RAILS_ENV=production bundle exec rake unicorn:start
+```
+
+## Heroku
+
+For free usage, don't use resque.
+Foreground scraiping process.
+
+
+## With background job on Resque
+
+For running on Heroku free plan, I don't use resque for scriping.
 
 * Remove comment out and comment out
 
@@ -95,36 +135,3 @@ bundle exec rake resque:work
 ```
 bundle exec rails s
 ```
-
-* Access pages by browser
-
-http://localhost:3000/
-
-## Production
-
-* set ENV as below
-
-- RAILS_ROOT (required) - Rails root path
-- HTTP_BASIC_NAME (required) - HTTP basic auth name
-- HTTP_BASIC_PASSWORD (required) - HTTP basic auth password
-- SECRET_KEY_BASE (required) - secret key (such as `rake secret`)
-- WEB_CONCURRENCY (optional. default 3) - unicorn workers
-
-* Start unicorn
-
-```
-# start unicron
-RAILS_ENV=production bundle exec rake unicorn:start
-
-# confirm wheter unicorn run or not
-ps -ef | grep unicorn | grep -v grep
-
-# stop unicorn
-RAILS_ENV=production bundle exec rake unicorn:start
-```
-
-## Heroku
-
-For free usage, don't use resque.
-Foreground scraiping process.
-

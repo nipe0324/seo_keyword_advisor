@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :keywords, only: :index
   end
 
+  resource :result_weights, only: [:edit, :update]
+
   root 'keyword_sets#index'
 
   # For heroku free usage, don't use resque
