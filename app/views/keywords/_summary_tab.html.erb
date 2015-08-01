@@ -1,0 +1,31 @@
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active">
+    <a href="#countup" aria-controls="countup" role="tab" data-toggle="tab">表示回数</a>
+  </li>
+  <li role="presentation">
+    <a href="#weight" aria-controls="weight" role="tab" data-toggle="tab">重み付け</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="countup">
+    <h4>ドメイン名と出現回数: 10件</h4>
+    <ul>
+      <% @summary_countup.each_with_index do |domain_count, i| %>
+      <li><%= "#{domain_count[0]}: #{domain_count[1]}" %></li>
+      <% break if i == 10 %>
+      <% end %>
+    </ul>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="weight">
+    <h4>ドメイン名と出現回数(重み付き): 10件</h4>
+    <ul>
+      <% @summary_weight.each_with_index do |domain_weight, i| %>
+      <li><%= "#{domain_weight[0]}: #{domain_weight[1].to_i}" %></li>
+      <% break if i == 10 %>
+      <% end %>
+    </ul>
+  </div>
+</div>

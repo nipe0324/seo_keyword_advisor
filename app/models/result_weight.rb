@@ -8,10 +8,13 @@ class ResultWeight < ActiveRecord::Base
     order(:position)
   end
 
+  def self.unknown_weight
+    ResultWeight.find_by(position: self::UNKNOWN).weight
+  end
+
   # for view methods
   def position_desc
     return '検索順位にマッチしない場合' if position == UNKNOWN
     position
   end
-
 end

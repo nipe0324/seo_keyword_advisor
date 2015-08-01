@@ -8,12 +8,7 @@
       集計結果 (<%= @keyword_set.analysed_at.strftime('%Y/%m/%d %H:%M:%S %A') %>)
     </div>
     <div class="panel-body">
-      <h4>ドメイン名と出現回数</h4>
-      <ul>
-        <% @summary.each do |domain_count| %>
-        <li><%= "#{domain_count[0]}: #{domain_count[1]}" %></li>
-        <% end %>
-      </ul>
+      <%= render 'summary_tab' %>
     </div>
   </div>
 
@@ -26,8 +21,8 @@
         <% @keyword_set.keywords.each do |k| %>
         <li><%= k.name %></li>
         <ul>
-          <% k.results.each_with_index do |r, i| %>
-            <li><%= i+1 %>:<%= link_to r.title, r.url %> (<%= r.domain %>)</li>
+          <% k.results.each do |r| %>
+            <li><%= r.position %>:<%= link_to r.title, r.url %> (<%= r.domain %>)</li>
           <% end %>
         </ul>
         <% end %>

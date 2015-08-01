@@ -17,12 +17,14 @@ class ScrapeSearchResultService
   def initialize(keyword)
     fail 'Keyword must be needed' if keyword.blank?
     @keyword = keyword
+    @keyword.results.destroy_all
+    @index = 1
   end
 
   def call
     doc = Nokogiri.HTML(open(google_search_url))
 
-    doc.search("div#search ol li").each_with_index do |li, idx|
+    doc.search("div#search ol li").each do |li|
       li.search("h3 a").each do |alink|
         href = alink.attribute("href")
 
@@ -33,15 +35,15 @@ class ScrapeSearchResultService
         url    = extract_url(href)
         domain = extract_domain(url)
 
-        @keyword.results.destroy_all
         Result.create!({
           keyword_id: @keyword.id,
           title:      title,
           desc:       desc,
           url:        url,
           domain:     domain,
-          position:   idx + 1
+          position:   @index
         })
+        @index += 1
       end
     end
   end
