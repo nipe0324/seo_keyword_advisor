@@ -1,0 +1,4 @@
+web:    bundle exec rails server -p $PORT
+worker: bundle exec rake resque:work
+redis:  redis-server
+guard:  bundle exec guard

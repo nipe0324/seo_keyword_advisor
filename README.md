@@ -43,6 +43,12 @@ bundle exec rake db:migrate
 bundle exec rake db:seed
 ```
 
+* Run process
+
+```
+bundle exec foreman start -f Procfile.development
+```
+
 * Access pages by browser
 
 http://localhost:3000/
