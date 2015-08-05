@@ -58,8 +58,6 @@ http://localhost:3000/
 * set ENV as below
 
 - RAILS_ROOT (required) - Rails root path
-- HTTP_BASIC_NAME (required) - HTTP basic auth name
-- HTTP_BASIC_PASSWORD (required) - HTTP basic auth password
 - SECRET_KEY_BASE (required) - secret key (such as `rake secret`)
 - WEB_CONCURRENCY (optional. default 3) - unicorn workers
 
